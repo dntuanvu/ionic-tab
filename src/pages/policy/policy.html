@@ -1,0 +1,14 @@
+<ion-header>
+    <ion-navbar>
+      <ion-title>Pending New Business</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+    <ion-list>
+      <button ion-item *ngFor="let item of items" (click)="itemClicked(item);">
+        {{ item.policy_no }} ({{ item.financial_planner_name }})
+      </button>  
+    </ion-list>
+  </ion-content>
+  
