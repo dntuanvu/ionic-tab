@@ -14,8 +14,9 @@ import { PolicyPage } from '../policy/policy';
 export class HomePage {
 
     items: any ;
+    jobs: any;
     constructor(public http : Http, public loadingController:LoadingController, public navCtrl: NavController){
-        
+        this.jobs = '2';
     }
 
     ionViewWillEnter(){
@@ -23,6 +24,10 @@ export class HomePage {
     }
 
     ionViewDidLoad() {
+      this.fetchJobList(this.jobs);
+    }
+
+    fetchJobList(job_type) {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       headers.append('Accept', 'application/json');
@@ -31,19 +36,32 @@ export class HomePage {
       //headers.append('SecretKey','a8658f0d67890459');
 
       let loader = this.loadingController.create({
-        content: "Loading agents..."
+        content: "Loading..."
       });  
       loader.present();
 
-      let options = new RequestOptions({ headers: headers });
-      this.http.get('https://pocvu.apps.eas.pcf.manulife.com/api/pending/agent')
+      //this.http.get('https://pocvu.apps.eas.pcf.manulife.com/api/pending/agent')
+      this.http.get('https://jobio.grabjobs.co/v3/seeker/job/list?filter_country=SG&last_num_job=0&flag=0&job_num=60&job_type=' + job_type)
+      //this.http.get("http://localhost:8082/app1/api/home")
+      //this.http.get('http://localhost:8083/api/pending/agent')
+      //this.http.get('https://randomuser.me/api/?results=20')
+      .map(res => res.json())
+      .subscribe(data => {
+        loader.dismiss();
+        this.items = data["items"]; 
+        console.log("success=" + JSON.stringify(data));
+      }, (err) => {
+        loader.dismiss();
+        console.log("error=" + err);
+      });
+    
+      /*this.http.get("http://localhost:8082/app1/api/home")
       .map(res => res.json())
       .subscribe(data =>
       {
         loader.dismiss();
-        this.items = data["agents"]; 
-        console.log('GET RESPONSE',this.items +"");
-      });
+        this.items = data["items"]; 
+      });*/
     }
 
     itemClicked(item) {
@@ -53,6 +71,11 @@ export class HomePage {
         agt_rank: item.agt_rank
       });
     } 
+
+    onSegmentChange() {
+      console.log("job_type segment=" + this.jobs);
+      this.fetchJobList(this.jobs);
+    }
      
 
 }

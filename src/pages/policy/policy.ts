@@ -23,7 +23,8 @@ export class PolicyPage {
         //headers.append('SecretKey','a8658f0d67890459');
 
         let loader = this.loadingController.create({
-            content: "Loading pending policy..."
+            //content: "Loading pending policy..."
+            content: "Loading Jobs..."
         });  
         loader.present();
 

@@ -13,6 +13,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
 import { PolicyPage } from '../pages/policy/policy';
 import { PolicyDetailPage } from '../pages/policy_detail/policy_detail';
+import { LoginPage } from '../pages/login/login';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { PolicyDetailPage } from '../pages/policy_detail/policy_detail';
     HomePage,
     PolicyPage,
     PolicyDetailPage,
-    TabsPage
+    TabsPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,8 @@ import { PolicyDetailPage } from '../pages/policy_detail/policy_detail';
     HomePage,
     PolicyPage,
     PolicyDetailPage,
-    TabsPage
+    TabsPage,
+    LoginPage
   ],
   providers: [
     StatusBar,

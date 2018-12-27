@@ -5,10 +5,17 @@
   </ion-header>
   
   <ion-content padding>
-    <ion-list>
-      <button ion-item *ngFor="let item of items" (click)="itemClicked(item);">
-        {{ item.policy_no }} ({{ item.financial_planner_name }})
+      <ion-card class="event-item" *ngFor="let item of items">
+          <ion-card-content>
+          <button ion-item  (click)="itemClicked(item);" text-wrap>
+            <b>{{ item.policy_no }}</b> <br> {{ item.financial_planner_name }}
+          </button>  
+          </ion-card-content>
+      </ion-card>
+    <!--<ion-list>
+      <button ion-item *ngFor="let item of items" (click)="itemClicked(item);" text-wrap>
+        <b>{{ item.policy_no }}</b> <br> {{ item.financial_planner_name }}
       </button>  
-    </ion-list>
+    </ion-list>-->
   </ion-content>
   
